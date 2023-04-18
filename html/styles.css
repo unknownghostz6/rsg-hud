@@ -78,7 +78,7 @@
 }
 
 #playerhud {
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-flow: row;
   bottom: 0;
