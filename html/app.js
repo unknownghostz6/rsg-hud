@@ -134,7 +134,7 @@ const playerHud = {
             voice: 0,
             temp: 0,
             youhavemail: true,
-            show: true,
+            show: false,
             talking: true,
             showTemp: true,
             showVoice: true,
@@ -217,9 +217,9 @@ const playerHud = {
                 this.showThirst = true;
             }
             if (data.stress <= 0) {
-                this.showStress = true;
+                this.showStress = false;
             } else {
-                this.showStress = true;
+                this.showStress = false;
             }
             if (data.talking) {
                 this.showVoice = true;
