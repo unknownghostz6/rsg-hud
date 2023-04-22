@@ -6,7 +6,7 @@
 # Hud moved by Unknown Ghostz#9131
 
 ## Example
-![pic1](https://cdn.discordapp.com/attachments/1097996761894748311/1099359540866203720/Screenshot_43.png)
+![pic1](https://cdn.discordapp.com/attachments/1097996761894748311/1099360821441736864/hud-example.png)
 
 # Dependancies
 - rsg-core
