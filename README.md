@@ -8,6 +8,9 @@
 # Example
 ![pic1](https://cdn.discordapp.com/attachments/1097996761894748311/1099362893578907698/hudedited-min.png)
 
+If you want to change between F and C right now you can go into Client/Main.lua and go to line 106
+Just comment the one you don't want out, and uncomment the other. (F by default)
+
 # Dependancies
 - rsg-core
 - rsg-telegram
