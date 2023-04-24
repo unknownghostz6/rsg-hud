@@ -104,15 +104,15 @@ CreateThread(function()
             if LocalPlayer.state['proximity'] then
                 voice = LocalPlayer.state['proximity'].distance
             end
-            Citizen.Wait(1000)
+            --Citizen.Wait(1000)
             local playerPed = PlayerPedId()
             local coords = GetEntityCoords(playerPed)
-            local metric = ShouldUseMetricTemperature() or ShouldUseMetricMeasurments()
+            local metric = ShouldUseMetricTemperature() or ShouldUseMetricMeasurements()
             local temperature
             local stamina = GetAttributeCoreValue(playerPed, 1)
             if metric then
-                --temperature = math.floor(GetTemperatureAtCoords(x, y, z)) .. "°C" --Uncomment for celcius
-                temperature = math.floor(GetTemperatureAtCoords(x, y, z) * 9/5 + 32) .. "°F" --Comment out for celcius 
+                --temperature = math.floor(GetTemperatureAtCoords(coords)) .. "°C" --Uncomment for celcius
+                temperature = math.floor(GetTemperatureAtCoords(coords) * 9/5 + 32) .. "°F" --Comment out for celcius 
             end
             SendNUIMessage({
                 action = 'hudtick',
