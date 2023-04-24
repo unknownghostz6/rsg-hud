@@ -80,14 +80,6 @@ AddEventHandler('hud:client:givestamina', function()
     end
 end)
 
-
-function foo(n)
-    return string.format("%.1f", n / 10^8)
-end
-
-
-
-
 -- Player HUD
 CreateThread(function()
     while true do
