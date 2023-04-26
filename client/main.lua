@@ -72,7 +72,7 @@ AddEventHandler('hud:client:givestamina', function()
     if not IsPedOnMount(player) then
         local increase = Config.Staminaitemplayerincrease
         --local HealthSt = GetAttributeCoreValue(player, 1)
-        local HealthSt = Citizen.InvokeNative(0x36731AC041289BB1, player, 1) --ACTUAL STAMINA CORE GETTER
+        local HealthSt = Citizen.InvokeNative(0x36731AC041289BB1, PlayerPedId(), 1) --ACTUAL STAMINA CORE GETTER
         HealthSt = HealthSt + increase
         if HealthSt <= 100 then
             Citizen.InvokeNative(0xC6258F41D86676E0, player, 1, HealthSt)
