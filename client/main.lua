@@ -71,7 +71,8 @@ AddEventHandler('hud:client:givestamina', function()
     local player = PlayerPedId()
     if not IsPedOnMount(player) then
         local increase = Config.Staminaitemplayerincrease
-        local HealthSt = GetAttributeCoreValue(player, 1)
+        --local HealthSt = GetAttributeCoreValue(player, 1)
+        local HealthSt = Citizen.InvokeNative(0x36731AC041289BB1, player, 1) --ACTUAL STAMINA CORE GETTER
         HealthSt = HealthSt + increase
         if HealthSt <= 100 then
             Citizen.InvokeNative(0xC6258F41D86676E0, player, 1, HealthSt)
@@ -101,7 +102,8 @@ CreateThread(function()
             local coords = GetEntityCoords(playerPed)
             local metric = ShouldUseMetricTemperature() or ShouldUseMetricMeasurements()
             local temperature
-            local stamina = GetAttributeCoreValue(playerPed, 1)
+            --local stamina = GetAttributeCoreValue(playerPed, 1)
+            --local stamina = Citizen.InvokeNative(0x36731AC041289BB1, PlayerPedId(), 1) --ACTUAL STAMINA CORE GETTER
             if metric then
                 --temperature = math.floor(GetTemperatureAtCoords(coords)) .. "°C" --Uncomment for celcius
                 temperature = math.floor(GetTemperatureAtCoords(coords) * 9/5 + 32) .. "°F" --Comment out for celcius 
@@ -116,7 +118,7 @@ CreateThread(function()
                 stress = stress,
                 talking = talking,
                 temp = temperature,
-                stamina = stamina,
+                stamina = Citizen.InvokeNative(0x36731AC041289BB1, PlayerPedId(), 1), --ACTUAL STAMINA CORE GETTER,,
                 voice = voice,
                 youhavemail = youhavemail,
                 
