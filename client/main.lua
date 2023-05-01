@@ -65,22 +65,6 @@ RegisterNetEvent('hud:client:UpdateStress', function(newStress)
     stress = newStress
 end)
 
-RegisterNetEvent('hud:client:givestamina')
-AddEventHandler('hud:client:givestamina', function()
-    local src = source
-    local player = PlayerPedId()
-    if not IsPedOnMount(player) then
-        local increase = Config.Staminaitemplayerincrease
-        --local HealthSt = GetAttributeCoreValue(player, 1)
-        local HealthSt = Citizen.InvokeNative(0x36731AC041289BB1, PlayerPedId(), 1) --ACTUAL STAMINA CORE GETTER
-        HealthSt = HealthSt + increase
-        if HealthSt <= 100 then
-            Citizen.InvokeNative(0xC6258F41D86676E0, player, 1, HealthSt)
-        end
-        RSGCore.Functions.Notify("Gained Energy")
-    end
-end)
-
 -- Player HUD
 CreateThread(function()
     while true do
@@ -102,11 +86,32 @@ CreateThread(function()
             local coords = GetEntityCoords(playerPed)
             local metric = ShouldUseMetricTemperature() or ShouldUseMetricMeasurements()
             local temperature
-            --local stamina = GetAttributeCoreValue(playerPed, 1)
-            --local stamina = Citizen.InvokeNative(0x36731AC041289BB1, PlayerPedId(), 1) --ACTUAL STAMINA CORE GETTER
+            local stamina = tonumber(string.format("%.2f", Citizen.InvokeNative(0x0FF421E467373FCF, PlayerId(), Citizen.ResultAsFloat())))
+            local mounted = IsPedOnMount(PlayerPedId())
             if metric then
                 --temperature = math.floor(GetTemperatureAtCoords(coords)) .. "°C" --Uncomment for celcius
                 temperature = math.floor(GetTemperatureAtCoords(coords) * 9/5 + 32) .. "°F" --Comment out for celcius 
+            end
+            ---@type any
+            local horsehealth = 0 
+            
+            ---@type any
+            local horsestam = 0 
+
+            if mounted then
+                local horse = GetMount(PlayerPedId())
+                local maxHealth = Citizen.InvokeNative(0x4700A416E8324EF3, horse, Citizen.ResultAsInteger())
+                local maxStamina = Citizen.InvokeNative(0xCB42AFE2B613EE55, horse, Citizen.ResultAsFloat())
+                horsehealth = tonumber(
+                    string.format(
+                        "%.2f", Citizen.InvokeNative(0x82368787EA73C0F7, horse) / maxHealth * 100 
+                    )
+                )
+                horsestam = tonumber(
+                    string.format(
+                        "%.2f", Citizen.InvokeNative(0x775A1CA7893AA8B5, horse, Citizen.ResultAsFloat()) / maxStamina * 100
+                    )
+                )
             end
             SendNUIMessage({
                 action = 'hudtick',
@@ -118,7 +123,10 @@ CreateThread(function()
                 stress = stress,
                 talking = talking,
                 temp = temperature,
-                stamina = Citizen.InvokeNative(0x36731AC041289BB1, PlayerPedId(), 1), --ACTUAL STAMINA CORE GETTER,,
+                onHorse = mounted,
+                horsehealth = horsehealth,
+                horsestamina = horsestam,
+                stamina = stamina,
                 voice = voice,
                 youhavemail = youhavemail,
                 
