@@ -133,6 +133,8 @@ const playerHud = {
             stress: 0,
             voice: 0,
             temp: 0,
+            horsehealth: 0,
+            horsestamina: 0,
             stamina: 0,
             youhavemail: true,
             show: false,
@@ -145,6 +147,10 @@ const playerHud = {
             showThirst: true,
             showTemp: true,
             showStress: true,
+            showHorseStamina: false,
+            showHorseHealth: false,
+            showHorseStaminaColor: "#a16600",
+            showHorseHealthColor: "#a16600",
             showYouHaveMail: true,
             talkingColor: "#FFFFFF",
         }
@@ -170,10 +176,16 @@ const playerHud = {
             this.thirst = data.thirst;
             this.stress = data.stress;
             this.temp = data.temp;
-            this.stamina = data.stamina;
+            this.stamina = parseInt(data.stamina);
             this.voice = data.voice;
             this.youhavemail = data.youhavemail;
             this.talking = data.talking;
+            this.showHorseStamina = data.onHorse;
+            this.showHorseHealth = data.onHorse;
+            if (data.onHorse) {
+                this.horsehealth = data.horsehealth;
+                this.horsestamina = data.horsestamina;
+            }
             if (data.health >= 100) {
                 this.showHealth = true;
             } else {
@@ -184,15 +196,15 @@ const playerHud = {
             } else {
                 this.showHealthColor = "#FFF";
             }
-            if (data.stamina <= 30 ) {
-                this.showStaminaColor = "#FF0000";
-              } else {
-                  this.showStaminaColor = "#FFF";
-              }
-            if (data.stamina >= 100) {
+            this.showStaminaColor = "#FFF";
+            if (parseInt(data.stamina) < 50) {
                 this.showStamina = true;
             } else {
                 this.showStamina = true;
+            }
+
+            if(parseInt(data.stamina) <= 20) {
+                this.showStaminaColor = "#FF0000";
             }
             if (data.temp >= 0) {
                 this.showTemp = true;
