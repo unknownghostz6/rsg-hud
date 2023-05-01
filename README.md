@@ -9,6 +9,8 @@
 If you want to change between F and C right now you can go into Client/Main.lua and go to line 106
 Just comment the one you don't want out, and uncomment the other. (F by default)
 
+Then go into server.cfg and add ```setr rsg_usecelsius "false"``` if using farenheit
+
 # Example
 ![pic1](https://cdn.discordapp.com/attachments/1097996761894748311/1102562122480762931/hudv4.png)
 
