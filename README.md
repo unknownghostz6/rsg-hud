@@ -9,10 +9,8 @@
 If you want to change between F and C right now you can go into Client/Main.lua and go to line 106
 Just comment the one you don't want out, and uncomment the other. (F by default)
 
-Insert code snippet thats below into rsg-core/shared/items.lua then you need to add the item into your shops so players can use the drinks to replenish energy after that drop the energydrink picture into rsg-inventory/html/images ```['energydrink']        = {['name'] = 'energydrink',        ['label'] = 'Energy Drink',    ['weight'] = 200, ['type'] = 'item', ['image'] = 'energydrink.png',        ['unique'] = false, ['useable'] = true,  ['shouldClose'] = true, ['combinable'] = nil, ['level'] = 0, ['description'] = 'drink to get energy back'},```
-
 # Example
-![pic1](https://cdn.discordapp.com/attachments/1097996761894748311/1099945260194467890/newesthudupdate.png)
+![pic1](https://cdn.discordapp.com/attachments/1097996761894748311/1102562122480762931/hudv4.png)
 
 # Dependancies
 - rsg-core
