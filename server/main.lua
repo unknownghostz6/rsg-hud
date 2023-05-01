@@ -100,15 +100,6 @@ RegisterNetEvent('hud:server:RelieveStress', function(amount)
     end
 end)
 
--- Item used to gain energy back
-RSGCore.Functions.CreateUseableItem("energydrink", function(source, item)
-    local Player = RSGCore.Functions.GetPlayer(source)
-    if Player.Functions.RemoveItem(item.name, 1, item.slot) then
-        --TriggerClientEvent("consumables:client:Drink", source, item.name)
-        TriggerClientEvent('hud:client:givestamina',source)
-    end
-end)
-
 -- count telegrams for player
 RSGCore.Functions.CreateCallback('hud:server:getTelegramsAmount', function(source, cb)
     local src = source
