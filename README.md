@@ -12,7 +12,7 @@ Just comment the one you don't want out, and uncomment the other. (F by default)
 Then go into server.cfg and add ```setr rsg_usecelsius "false"``` if using farenheit
 
 # Example
-![pic1](https://cdn.discordapp.com/attachments/1090595017095118948/1191105064203468861/Screenshot_102.png)
+![pic1](https://media.discordapp.net/attachments/1090595017095118948/1191105064203468861/Screenshot_102.png?ex=65a43a08&is=6591c508&hm=24f7e051771561a2fa9954b3de76cda7432082ef497d15022f6c48018265b0e6&=&format=webp&quality=lossless&width=938&height=529)
 
 # Dependancies
 - rsg-core
